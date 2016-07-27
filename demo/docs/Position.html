@@ -93,7 +93,7 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line64">line 64</a>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -134,6 +134,69 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
 
     
         <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="marker"><span class="type-signature"></span>marker<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Returns the marker at this position, in the backward direction
+(i.e., the marker to the left of the cursor if the cursor is on a marker boundary and text is left-to-right)</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line136">line 136</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
 
         
             
@@ -229,7 +292,7 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line73">line 73</a>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line78">line 78</a>
     </li></ul></dd>
     
 
@@ -339,7 +402,7 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line71">line 71</a>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -508,7 +571,7 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line84">line 84</a>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -546,6 +609,562 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
 |
 
 <span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isHead"><span class="type-signature"></span>isHead<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line190">line 190</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>If this position is at the head of its section</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isHeadOfPost"><span class="type-signature"></span>isHeadOfPost<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line176">line 176</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>If this position is at the head of the post</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isTail"><span class="type-signature"></span>isTail<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line197">line 197</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>If this position is at the head of its section</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isTailOfPost"><span class="type-signature"></span>isTailOfPost<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line183">line 183</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>If this position is at the tail of the post</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="markerIn"><span class="type-signature"></span>markerIn<span class="signature">(direction)</span><span class="type-signature"> &rarr; {<a href="Marker.html">Marker</a>|undefined}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns the marker in <code>direction</code> from this position.
+If the position is in the middle of a marker, the direction is irrelevant.
+Otherwise, if the position is at a boundary between two markers, returns the
+marker to the left if <code>direction</code> === BACKWARD and the marker to the right
+if <code>direction</code> === FORWARD (assuming left-to-right text direction).</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Direction">Direction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Marker.html">Marker</a></span>
+|
+
+<span class="param-type">undefined</span>
 
 
     </dd>
@@ -660,7 +1279,7 @@ Two positions (a head and a tail) make up a <a href="Range.html">Range</a>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line156">line 156</a>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -712,6 +1331,155 @@ at the end of the post.</p>
 
 
         
+            
+
+    
+
+    <h4 class="name" id="moveWord"><span class="type-signature"></span>moveWord<span class="signature">(direction)</span><span class="type-signature"> &rarr; {<a href="Position.html">Position</a>}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>(FORWARD or BACKWARD)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_cursor_position.js.html">utils/cursor/position.js</a>, <a href="utils_cursor_position.js.html#line226">line 226</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The result of moving 1 &quot;word&quot; unit in <code>direction</code></p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Position.html">Position</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
@@ -733,7 +1501,7 @@ at the end of the post.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue May 10 2016 14:22:55 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 14:34:46 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

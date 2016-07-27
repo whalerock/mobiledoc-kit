@@ -29,15 +29,16 @@
             <pre class="prettyprint source linenums"><code>import Tooltip from '../views/tooltip';
 import PostEditor from './post';
 import ImageCard from '../cards/image';
-import Key from '../utils/key';
+import { DIRECTION } from '../utils/key';
 import mobiledocParsers from '../parsers/mobiledoc';
 import HTMLParser from '../parsers/html';
 import DOMParser from '../parsers/dom';
 import Renderer  from 'mobiledoc-kit/renderers/editor-dom';
 import RenderTree from 'mobiledoc-kit/models/render-tree';
 import mobiledocRenderers from '../renderers/mobiledoc';
+import { MOBILEDOC_VERSION } from 'mobiledoc-kit/renderers/mobiledoc';
 import { mergeWithOptions } from '../utils/merge';
-import { clearChildNodes, addClassName } from '../utils/dom-utils';
+import { normalizeTagName, clearChildNodes, addClassName } from '../utils/dom-utils';
 import { forEach, filter, contains, values } from '../utils/array-utils';
 import { setData } from '../utils/element-utils';
 import Cursor from '../utils/cursor';
@@ -45,16 +46,13 @@ import Range from '../utils/cursor/range';
 import Position from '../utils/cursor/position';
 import PostNodeBuilder from '../models/post-node-builder';
 import { DEFAULT_TEXT_INPUT_HANDLERS } from './text-input-handlers';
-import { convertExpansiontoHandler } from './text-expansion-handler';
 import {
   DEFAULT_KEY_COMMANDS, buildKeyCommand, findKeyCommands, validateKeyCommand
 } from './key-commands';
 import { CARD_MODES } from '../models/card';
 import { detect } from '../utils/array-utils';
 import assert from '../utils/assert';
-import deprecate from '../utils/deprecate';
 import MutationHandler from 'mobiledoc-kit/editor/mutation-handler';
-import { MOBILEDOC_VERSION } from 'mobiledoc-kit/renderers/mobiledoc';
 import EditHistory from 'mobiledoc-kit/editor/edit-history';
 import EventManager from 'mobiledoc-kit/editor/event-manager';
 import EditState from 'mobiledoc-kit/editor/edit-state';
@@ -94,7 +92,7 @@ const CALLBACK_QUEUES = {
 };
 
 /**
- * The Editor is a core component of mobiledoc-kit. After instantiating 
+ * The Editor is a core component of mobiledoc-kit. After instantiating
  * an editor, use {@link Editor#render} to display the editor on the web page.
  *
  * An editor uses a {@link Post} internally to represent the displayed document.
@@ -275,11 +273,12 @@ class Editor {
     this.hasRendered = true;
     this.rerender();
 
-    if (this.autofocus) {
-      this.element.focus();
-    }
     this._mutationHandler.init();
     this._eventManager.init();
+
+    if (this.autofocus) {
+      this.selectRange(new Range(this.post.headPosition()));
+    }
   }
 
   _addTooltip() {
@@ -295,21 +294,6 @@ class Editor {
   }
 
   /**
-   * Prefer {@link Editor#onTextInput} to `registerExpansion`.
-   * @param {Object} expansion
-   * @param {String} expansion.text
-   * @param {Function} expansion.run This callback will be invoked with an `editor` argument
-   * @param {Number} [expansion.trigger] The keycode (e.g. 32 for `&lt;space>`) that will trigger the expansion after the text is entered
-   * @deprecated since v0.9.3
-   * @public
-   */
-  registerExpansion(expansion) {
-    deprecate('Use `Editor#onTextInput` instead of `registerExpansion`');
-    let handler = convertExpansiontoHandler(expansion);
-    this.onTextInput(handler);
-  }
-
-  /**
    * @param {Object} keyCommand The key command to register. It must specify a
    * modifier key (meta, ctrl, etc), a string representing the ascii key, and
    * a `run` method that will be passed the editor instance when the key command
@@ -322,25 +306,47 @@ class Editor {
     this.keyCommands.unshift(keyCommand);
   }
 
-  /**
-   * @param {KeyEvent} [event]
-   * @private
-   */
-  handleDeletion(event=null) {
+  deleteInDirection(direction, {unit}) {
     let { range } = this;
 
-    if (!range.isCollapsed) {
+    if (unit === 'word') {
+      return this.deleteWordInDirection(direction);
+    } else {
       this.run(postEditor => {
-        let nextPosition = postEditor.deleteRange(range);
+        let nextPosition = postEditor.deleteFrom(range.head, direction);
         postEditor.setRange(new Range(nextPosition));
       });
-    } else if (event) {
-      let key = Key.fromEvent(event);
-      this.run(postEditor => {
-        let nextPosition = postEditor.deleteFrom(range.head, key.direction);
-        let newRange = new Range(nextPosition);
-        postEditor.setRange(newRange);
-      });
+    }
+  }
+
+  deleteWordInDirection(direction) {
+    let { range: { head: curPos } } = this;
+
+    let nextPos = curPos.moveWord(direction);
+
+    let head = direction === DIRECTION.FORWARD ? curPos : nextPos;
+    let tail = direction === DIRECTION.FORWARD ? nextPos : curPos;
+
+    return this.deleteRange(new Range(head, tail, direction));
+  }
+
+  deleteRange(range) {
+    this.run(postEditor => {
+      let nextPosition = postEditor.deleteRange(range);
+      postEditor.setRange(new Range(nextPosition));
+    });
+  }
+
+  /**
+   * @private
+   */
+  performDelete({direction, unit}={direction: DIRECTION.BACKWARD, unit: 'char'}) {
+    let { range } = this;
+
+    if (range.isCollapsed) {
+      this.deleteInDirection(direction, {unit});
+    } else {
+      this.deleteRange(range);
     }
   }
 
@@ -378,18 +384,6 @@ class Editor {
     this.runCallbacks(CALLBACK_QUEUES.POST_DID_CHANGE);
   }
 
-  selectSections(sections=[]) {
-    if (sections.length) {
-      let headSection = sections[0],
-          tailSection = sections[sections.length - 1];
-      this.selectRange(new Range(headSection.headPosition(),
-                                 tailSection.tailPosition()));
-    } else {
-      this.cursor.clearSelection();
-    }
-    this._reportSelectionState();
-  }
-
   /**
    * Selects the given range. If range is collapsed, this positions the cursor
    * at the range's position, otherwise a selection is created in the editor
@@ -397,15 +391,8 @@ class Editor {
    * @param {Range}
    */
   selectRange(range) {
-    this.renderRange(range);
-  }
-
-  /**
-   * @private
-   */
-  renderRange(range) {
     this.cursor.selectRange(range);
-    this._notifyRangeChange();
+    this.range = range;
   }
 
   get cursor() {
@@ -414,42 +401,29 @@ class Editor {
 
   /**
    * Return the current range for the editor (may be cached).
-   * The #_resetRange method forces a re-read of
-   * the range from DOM.
    * @return {Range}
    */
   get range() {
-    if (this._range) {
-      return this._range;
-    }
-    let range = this.cursor.offsets;
-    if (!range.isBlank) { // do not cache blank ranges
-      this._range = range;
-    }
-    return range;
+    return this._editState.range;
   }
 
-  /**
-   * Used to notify the editor that the range (or state) may
-   * have changed (e.g. in response to a mouseup or keyup) and
-   * that the editor should re-read values from DOM and fire the
-   * necessary callbacks
-   * @private
-   */
-  _notifyRangeChange() {
-    this._resetRange();
-    this._editState.reset();
+  set range(newRange) {
+    this._editState.updateRange(newRange);
 
     if (this._editState.rangeDidChange()) {
       this._rangeDidChange();
     }
+
     if (this._editState.inputModeDidChange()) {
       this._inputModeDidChange();
     }
   }
 
-  _resetRange() {
-    delete this._range;
+  _readRangeFromDOM() {
+    if (!this.isEditable) {
+      return;
+    }
+    this.range = this.cursor.offsets;
   }
 
   setPlaceholder(placeholder) {
@@ -526,6 +500,7 @@ class Editor {
 
   /**
    * @type {Markup[]}
+   * @public
    */
   get activeMarkups() {
     return this._editState.activeMarkups;
@@ -538,18 +513,13 @@ class Editor {
   hasActiveMarkup(markup) {
     let matchesFn;
     if (typeof markup === 'string') {
-      markup = markup.toLowerCase();
-      matchesFn = (_markup) => _markup.tagName === markup;
+      let tagName = normalizeTagName(markup);
+      matchesFn = (m) => m.tagName === tagName;
     } else {
-      matchesFn = (_markup) => _markup === markup;
+      matchesFn = (m) => m === markup;
     }
 
     return !!detect(this.activeMarkups, matchesFn);
-  }
-
-  get markupsInSelection() {
-    // FIXME deprecate this
-    return this.activeMarkups;
   }
 
   /**
@@ -636,15 +606,18 @@ class Editor {
    * @public
    */
   destroy() {
-    this._isDestroyed = true;
-    if (this.hasCursor()) {
+    this.isDestroyed = true;
+    if (this._hasSelection()) {
       this.cursor.clearSelection();
+    }
+    if (this._hasFocus()) {
       this.element.blur(); // FIXME This doesn't blur the element on IE11
     }
     this._mutationHandler.destroy();
     this._eventManager.destroy();
     this.removeAllViews();
     this._renderer.destroy();
+    this._editState.destroy();
   }
 
   /**
@@ -654,10 +627,13 @@ class Editor {
    * @public
    */
   disableEditing() {
+    if (this.isEditable === false) { return; }
+
     this.isEditable = false;
-    if (this.element) {
+    if (this.hasRendered) {
       this.element.setAttribute('contentEditable', false);
       this.setPlaceholder('');
+      this.selectRange(Range.blankRange());
     }
   }
 
@@ -731,11 +707,12 @@ class Editor {
     const result = callback(postEditor);
     this.runCallbacks(CALLBACK_QUEUES.DID_UPDATE, [postEditor]);
     postEditor.complete();
+    this._readRangeFromDOM();
+
     if (postEditor._shouldCancelSnapshot) {
       this._editHistory._pendingSnapshot = null;
     }
     this._editHistory.storeSnapshot();
-    this._notifyRangeChange();
 
     return result;
   }
@@ -810,24 +787,7 @@ class Editor {
     this.addCallback(CALLBACK_QUEUES.CURSOR_DID_CHANGE, callback);
   }
 
-  /*
-     The following events/sequences can create a selection and are handled:
-       * mouseup -- can happen anywhere in document, must wait until next tick to read selection
-       * keyup when key is a movement key and shift is pressed -- in editor element
-       * keyup when key combo was cmd-A (alt-A) aka "select all"
-       * keyup when key combo was cmd-Z (browser may restore selection)
-     These cases can create a selection and are not handled:
-       * ctrl-click -> context menu -> click "select all"
-   */
-  _reportSelectionState() {
-    this._cursorDidChange();
-  }
-
   _rangeDidChange() {
-    this._cursorDidChange();
-  }
-
-  _cursorDidChange() {
     if (this.hasRendered) {
       this.runCallbacks(CALLBACK_QUEUES.CURSOR_DID_CHANGE);
     }
@@ -856,14 +816,46 @@ class Editor {
    * @see PostEditor#toggleMarkup
    */
   toggleMarkup(markup) {
-    markup = this.post.builder.createMarkup(markup);
+    markup = this.builder.createMarkup(markup);
     let { range } = this;
     if (range.isCollapsed) {
       this._editState.toggleMarkupState(markup);
       this._inputModeDidChange();
+
+      // when clicking a button to toggle markup, the button can end up being focused,
+      // so ensure the editor is focused
+      this._ensureFocus();
     } else {
       this.run(postEditor => postEditor.toggleMarkup(markup, range));
     }
+  }
+
+  // If the editor has a selection but is not focused, focus it
+  _ensureFocus() {
+    if (this._hasSelection() &amp;&amp; !this._hasFocus()) {
+      this.element.focus();
+    }
+  }
+
+  /**
+   * Whether there is a selection inside the editor's element.
+   * It's possible to have a selection but not have focus.
+   * @see #_hasFocus
+   * @return {Boolean}
+   */
+  _hasSelection() {
+    let { cursor } = this;
+    return this.hasRendered &amp;&amp; (cursor._hasCollapsedSelection() || cursor._hasSelection());
+  }
+
+  /**
+   * Whether the editor's element is focused
+   * It's possible to be focused but have no selection
+   * @see #_hasSelection
+   * @return {Boolean}
+   */
+  _hasFocus() {
+    return document.activeElement === this.element;
   }
 
   /**
@@ -934,6 +926,7 @@ class Editor {
    * @param {String} atomName
    * @param {String} [atomText='']
    * @param {Object} [atomPayload={}]
+   * @return {Atom} The inserted atom.
    * @public
    */
   insertAtom(atomName, atomText='', atomPayload={}) {
@@ -941,17 +934,20 @@ class Editor {
     if (this.post.isBlank) {
       this._insertEmptyMarkupSectionAtCursor();
     }
+
+    let atom;
     let { range } = this;
     this.run(postEditor => {
       let position = range.head;
 
-      let atom = postEditor.builder.createAtom(atomName, atomText, atomPayload);
+      atom = postEditor.builder.createAtom(atomName, atomText, atomPayload);
       if (!range.isCollapsed) {
         position = postEditor.deleteRange(range);
       }
 
       postEditor.insertMarkers(position, [atom]);
     });
+    return atom;
   }
 
   /**
@@ -963,6 +959,7 @@ class Editor {
    * @param {String} cardName
    * @param {Object} [cardPayload={}]
    * @param {Boolean} [inEditMode=false] Whether the card should be inserted in edit mode.
+   * @return {Card} The inserted Card section.
    * @public
    */
   insertCard(cardName, cardPayload={}, inEditMode=false) {
@@ -971,10 +968,11 @@ class Editor {
       this._insertEmptyMarkupSectionAtCursor();
     }
 
+    let card;
     let { range } = this;
     this.run(postEditor => {
       let position = range.tail;
-      let card = postEditor.builder.createCardSection(cardName, cardPayload);
+      card = postEditor.builder.createCardSection(cardName, cardPayload);
       if (inEditMode) {
         this.editCard(card);
       }
@@ -1003,6 +1001,7 @@ class Editor {
       // See: https://github.com/bustlelabs/mobiledoc-kit/issues/286
       postEditor.setRange(new Range(card.tailPosition()));
     });
+    return card;
   }
 
   /**
@@ -1040,20 +1039,11 @@ class Editor {
   }
 
   runCallbacks(...args) {
-    if (this._isDestroyed) {
+    if (this.isDestroyed) {
       // TODO warn that callback attempted after editor was destroyed
       return;
     }
     this._callbacks.runCallbacks(...args);
-  }
-
-  /**
-   * @deprecated since 0.9.1
-   */
-  on(eventName, callback) {
-    deprecate('`on` is deprecated. Use `postDidChange(callback)` instead to handle post changes');
-    assert('Cannot add listener for event other than "update"', eventName === 'update');
-    this.postDidChange(callback);
   }
 }
 
@@ -1074,7 +1064,7 @@ export default Editor;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue May 10 2016 14:22:55 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 14:34:46 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

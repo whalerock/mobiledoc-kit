@@ -30,7 +30,7 @@
     
         <h2>Editor</h2>
         
-            <div class="class-description"><p>The Editor is a core component of mobiledoc-kit. After instantiating 
+            <div class="class-description"><p>The Editor is a core component of mobiledoc-kit. After instantiating
 an editor, use <a href="Editor.html#render">Editor#render</a> to display the editor on the web page.</p>
 <p>An editor uses a <a href="Post.html">Post</a> internally to represent the displayed document.
 The post can be serialized as mobiledoc using <a href="Editor.html#serialize">Editor#serialize</a>. Mobiledoc
@@ -629,7 +629,7 @@ that matches a given string or regex.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line90">line 90</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -723,7 +723,7 @@ that matches a given string or regex.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line502">line 502</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line477">line 477</a>
     </li></ul></dd>
     
 
@@ -795,7 +795,7 @@ that matches a given string or regex.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line483">line 483</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line457">line 457</a>
     </li></ul></dd>
     
 
@@ -867,7 +867,7 @@ that matches a given string or regex.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line177">line 177</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line175">line 175</a>
     </li></ul></dd>
     
 
@@ -891,9 +891,7 @@ that matches a given string or regex.</li>
 
 
 <div class="description">
-    <p>Return the current range for the editor (may be cached).
-The #_resetRange method forces a re-read of
-the range from DOM.</p>
+    <p>Return the current range for the editor (may be cached).</p>
 </div>
 
 
@@ -931,7 +929,7 @@ the range from DOM.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line393">line 393</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line378">line 378</a>
     </li></ul></dd>
     
 
@@ -952,6 +950,222 @@ the range from DOM.</p>
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="_hasFocus"><span class="type-signature"></span>_hasFocus<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Whether the editor's element is focused
+It's possible to be focused but have no selection</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line829">line 829</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Editor.html#_hasSelection">#_hasSelection</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="_hasSelection"><span class="type-signature"></span>_hasSelection<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Whether there is a selection inside the editor's element.
+It's possible to have a selection but not have focus.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line818">line 818</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Editor.html#_hasFocus">#_hasFocus</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
         
             
@@ -1055,7 +1269,7 @@ the range from DOM.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line781">line 781</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line758">line 758</a>
     </li></ul></dd>
     
 
@@ -1137,7 +1351,7 @@ the range from DOM.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line610">line 610</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line580">line 580</a>
     </li></ul></dd>
     
 
@@ -1265,7 +1479,7 @@ the range from DOM.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line772">line 772</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line749">line 749</a>
     </li></ul></dd>
     
 
@@ -1392,7 +1606,7 @@ the range from DOM.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line719">line 719</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line696">line 696</a>
     </li></ul></dd>
     
 
@@ -1475,7 +1689,7 @@ Modification via the programmatic API is still permitted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line628">line 628</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line601">line 601</a>
     </li></ul></dd>
     
 
@@ -1564,7 +1778,7 @@ Modification via the programmatic API is still permitted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line162">line 162</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line160">line 160</a>
     </li></ul></dd>
     
 
@@ -1697,7 +1911,7 @@ it is rendered in display mode when it gets rendered.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line670">line 670</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line646">line 646</a>
     </li></ul></dd>
     
 
@@ -1840,7 +2054,7 @@ it is rendered in edit mode when it gets rendered.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line658">line 658</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line634">line 634</a>
     </li></ul></dd>
     
 
@@ -1924,7 +2138,7 @@ editing after disabling it.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line643">line 643</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line619">line 619</a>
     </li></ul></dd>
     
 
@@ -2082,7 +2296,7 @@ editing after disabling it.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line150">line 150</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line148">line 148</a>
     </li></ul></dd>
     
 
@@ -2212,7 +2426,7 @@ editing after disabling it.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line510">line 510</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line485">line 485</a>
     </li></ul></dd>
     
 
@@ -2315,7 +2529,7 @@ determine a cursor position, so they will be ignored.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line602">line 602</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line572">line 572</a>
     </li></ul></dd>
     
 
@@ -2461,7 +2675,7 @@ active sections) has changed, either via user input or programmatically</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line754">line 754</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line731">line 731</a>
     </li></ul></dd>
     
 
@@ -2492,7 +2706,7 @@ active sections) has changed, either via user input or programmatically</p></td>
 
     
 
-    <h4 class="name" id="insertAtom"><span class="type-signature"></span>insertAtom<span class="signature">(atomName, atomText<span class="signature-attributes">opt</span>, atomPayload<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="insertAtom"><span class="type-signature"></span>insertAtom<span class="signature">(atomName, atomText<span class="signature-attributes">opt</span>, atomPayload<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Atom}</span></h4>
 
     
 
@@ -2688,7 +2902,7 @@ range is not collapsed, it will be deleted before insertion.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line911">line 911</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line904">line 904</a>
     </li></ul></dd>
     
 
@@ -2711,6 +2925,28 @@ range is not collapsed, it will be deleted before insertion.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The inserted atom.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Atom</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -2719,7 +2955,7 @@ range is not collapsed, it will be deleted before insertion.</p>
 
     
 
-    <h4 class="name" id="insertCard"><span class="type-signature"></span>insertCard<span class="signature">(cardName, cardPayload<span class="signature-attributes">opt</span>, inEditMode<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="insertCard"><span class="type-signature"></span>insertCard<span class="signature">(cardName, cardPayload<span class="signature-attributes">opt</span>, inEditMode<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Card}</span></h4>
 
     
 
@@ -2917,7 +3153,7 @@ The editor's cursor will be placed at the end of the inserted card.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line940">line 940</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line937">line 937</a>
     </li></ul></dd>
     
 
@@ -2940,6 +3176,28 @@ The editor's cursor will be placed at the end of the inserted card.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The inserted Card section.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Card</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -3050,87 +3308,7 @@ range is not collapsed, it will be deleted before insertion.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line886">line 886</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="on"><span class="type-signature"></span>on<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>since 0.9.1</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line1025">line 1025</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line878">line 878</a>
     </li></ul></dd>
     
 
@@ -3392,7 +3570,7 @@ matching text.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line746">line 746</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line723">line 723</a>
     </li></ul></dd>
     
 
@@ -3542,7 +3720,7 @@ matching text.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line985">line 985</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line984">line 984</a>
     </li></ul></dd>
     
 
@@ -3692,263 +3870,7 @@ matching text.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line728">line 728</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="registerExpansion"><span class="type-signature"></span>registerExpansion<span class="signature">(expansion)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Prefer <a href="Editor.html#onTextInput">Editor#onTextInput</a> to <code>registerExpansion</code>.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>expansion</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>text</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>run</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>This callback will be invoked with an <code>editor</code> argument</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>trigger</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The keycode (e.g. 32 for <code>&lt;space&gt;</code>) that will trigger the expansion after the text is entered</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>since v0.9.3</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line278">line 278</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line705">line 705</a>
     </li></ul></dd>
     
 
@@ -4078,7 +4000,7 @@ is invoked</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line291">line 291</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line275">line 275</a>
     </li></ul></dd>
     
 
@@ -4206,7 +4128,7 @@ is invoked</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line222">line 222</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -4352,7 +4274,7 @@ Rendering will be deferred until after the callback is completed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line699">line 699</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line675">line 675</a>
     </li></ul></dd>
     
 
@@ -4507,7 +4429,7 @@ surface.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line371">line 371</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line365">line 365</a>
     </li></ul></dd>
     
 
@@ -4634,7 +4556,7 @@ surface.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line532">line 532</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line502">line 502</a>
     </li></ul></dd>
     
 
@@ -4791,7 +4713,7 @@ cards/atoms.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line546">line 546</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line516">line 516</a>
     </li></ul></dd>
     
 
@@ -4951,7 +4873,7 @@ If the editor is not focused and has no active range, nothing happens.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line830">line 830</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line790">line 790</a>
     </li></ul></dd>
     
 
@@ -5091,7 +5013,7 @@ and a CardSection, only the MarkupSection will be toggled.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line849">line 849</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line841">line 841</a>
     </li></ul></dd>
     
 
@@ -5226,7 +5148,7 @@ and a CardSection, only the MarkupSection will be toggled.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line763">line 763</a>
+        <a href="editor_editor.js.html">editor/editor.js</a>, <a href="editor_editor.js.html#line740">line 740</a>
     </li></ul></dd>
     
 
@@ -5274,7 +5196,7 @@ and a CardSection, only the MarkupSection will be toggled.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue May 10 2016 14:22:55 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 14:34:46 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>
