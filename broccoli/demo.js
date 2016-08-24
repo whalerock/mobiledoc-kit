@@ -1,9 +1,9 @@
 /* jshint node:true */
 var funnel = require('broccoli-funnel');
+var babel = require('broccoli-babel-transpiler');
 
 module.exports = function() {
-  return funnel('./plain-demo', {
-    include: ['*.html', '*.js', '*.css'],
+  return funnel(babel('demo/'), {
     destDir: 'demo'
   });
 };
