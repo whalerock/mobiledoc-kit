@@ -17,13 +17,13 @@ var _utilsArrayUtils = require('../utils/array-utils');
 var _types = require('./types');
 
 // valid values of `tagName` for a MarkupSection
-var VALID_MARKUP_SECTION_TAGNAMES = ['p', 'h3', 'h2', 'h1', 'h1-gold-style', 'blockquote', 'pull-quote'].map(_utilsDomUtils.normalizeTagName);
+var VALID_MARKUP_SECTION_TAGNAMES = ['p', 'h3', 'h2', 'h1', 'header1', 'header2', 'header3', 'header4', 'header5', 'header6', 'subheader1', 'subheader2', 'subheader3', 'subheader4', 'body1', 'body2', 'body3', 'body4', 'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'].map(_utilsDomUtils.normalizeTagName);
 
 exports.VALID_MARKUP_SECTION_TAGNAMES = VALID_MARKUP_SECTION_TAGNAMES;
 // valid element names for a MarkupSection. A MarkupSection with a tagName
 // not in this will be rendered as a div with a className matching the
 // tagName
-var MARKUP_SECTION_ELEMENT_NAMES = ['p', 'h3', 'h2', 'h1', 'h1-gold-style', 'blockquote'].map(_utilsDomUtils.normalizeTagName);
+var MARKUP_SECTION_ELEMENT_NAMES = ['p', 'h3', 'h2', 'h1', 'header1', 'header2', 'header3', 'header4', 'header5', 'header6', 'subheader1', 'subheader2', 'subheader3', 'subheader4', 'body1', 'body2', 'body3', 'body4', 'blockquote1', 'blockquote2', 'blockquote'].map(_utilsDomUtils.normalizeTagName);
 exports.MARKUP_SECTION_ELEMENT_NAMES = MARKUP_SECTION_ELEMENT_NAMES;
 var DEFAULT_TAG_NAME = VALID_MARKUP_SECTION_TAGNAMES[0];
 
