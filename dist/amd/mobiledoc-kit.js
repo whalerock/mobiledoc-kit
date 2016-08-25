@@ -6953,13 +6953,13 @@ define('mobiledoc-kit/models/markup-section', ['exports', 'mobiledoc-kit/models/
   function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
   // valid values of `tagName` for a MarkupSection
-  var VALID_MARKUP_SECTION_TAGNAMES = ['p', 'h3', 'h2', 'h1', 'blockquote', 'pull-quote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
+  var VALID_MARKUP_SECTION_TAGNAMES = ['h1-gold-style', 'p', 'h3', 'h2', 'h1', 'blockquote', 'pull-quote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
 
   exports.VALID_MARKUP_SECTION_TAGNAMES = VALID_MARKUP_SECTION_TAGNAMES;
   // valid element names for a MarkupSection. A MarkupSection with a tagName
   // not in this will be rendered as a div with a className matching the
   // tagName
-  var MARKUP_SECTION_ELEMENT_NAMES = ['p', 'h3', 'h2', 'h1', 'blockquote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
+  var MARKUP_SECTION_ELEMENT_NAMES = ['h1-gold-style', 'p', 'h3', 'h2', 'h1', 'blockquote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
   exports.MARKUP_SECTION_ELEMENT_NAMES = MARKUP_SECTION_ELEMENT_NAMES;
   var DEFAULT_TAG_NAME = VALID_MARKUP_SECTION_TAGNAMES[0];
 
