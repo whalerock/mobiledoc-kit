@@ -58,5 +58,5 @@
     "testem": "^1.7.4",
     "tiny-lr": "^0.2.1"
   },
-  "main": "src/js/index.js"
+  "main": "dist/commonjs/mobiledoc-kit/index.js"
 }
