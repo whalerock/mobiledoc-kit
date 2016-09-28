@@ -20,6 +20,9 @@ export const VALID_MARKUP_SECTION_TAGNAMES = [
             'body2-left', 'body2-right', 'body2-center',
             'body3-left', 'body3-right', 'body3-center',
             'body4-left', 'body4-right', 'body4-center',
+            'header1', 'header2', 'header3', 'header4', 'header5', 'header6',
+            'subheader1', 'subheader2', 'subheader3', 'subheader4',
+            'body1', 'body2', 'body3', 'body4',
             'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'
 ].map(normalizeTagName);
 
@@ -42,6 +45,9 @@ export const MARKUP_SECTION_ELEMENT_NAMES = [
             'body2-left', 'body2-right', 'body2-center',
             'body3-left', 'body3-right', 'body3-center',
             'body4-left', 'body4-right', 'body4-center',
+            'header1', 'header2', 'header3', 'header4', 'header5', 'header6',
+            'subheader1', 'subheader2', 'subheader3', 'subheader4',
+            'body1', 'body2', 'body3', 'body4',
             'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'
 ].map(normalizeTagName);
 export const DEFAULT_TAG_NAME = VALID_MARKUP_SECTION_TAGNAMES[0];
