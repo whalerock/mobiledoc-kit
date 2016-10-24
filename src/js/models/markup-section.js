@@ -23,6 +23,8 @@ export const VALID_MARKUP_SECTION_TAGNAMES = [
             'header1', 'header2', 'header3', 'header4', 'header5', 'header6',
             'subheader1', 'subheader2', 'subheader3', 'subheader4',
             'body1', 'body2', 'body3', 'body4',
+            'blockquote1-left', 'blockquote1-right', 'blockquote1-center',
+            'blockquote2-left', 'blockquote2-right', 'blockquote2-center',
             'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'
 ].map(normalizeTagName);
 
