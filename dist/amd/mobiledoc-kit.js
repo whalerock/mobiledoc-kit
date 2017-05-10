@@ -103,7 +103,8 @@ define('mobiledoc-html-renderer/renderer-factory', ['exports', 'mobiledoc-html-r
           case undefined:
           case null:
             return new _mobiledocHtmlRendererRenderers02['default'](mobiledoc, this.state).render();
-          case _mobiledocHtmlRendererRenderers03.MOBILEDOC_VERSION:
+          case _mobiledocHtmlRendererRenderers03.MOBILEDOC_VERSION_0_3_0:
+          case _mobiledocHtmlRendererRenderers03.MOBILEDOC_VERSION_0_3_1:
             return new _mobiledocHtmlRendererRenderers03['default'](mobiledoc, this.state).render();
           default:
             throw new Error('Unexpected Mobiledoc version "' + version + '"');
@@ -451,7 +452,11 @@ define('mobiledoc-html-renderer/renderers/0-3', ['exports', 'mobiledoc-html-rend
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-  var MOBILEDOC_VERSION = '0.3.0';
+  var MOBILEDOC_VERSION_0_3_0 = '0.3.0';
+  exports.MOBILEDOC_VERSION_0_3_0 = MOBILEDOC_VERSION_0_3_0;
+  var MOBILEDOC_VERSION_0_3_1 = '0.3.1';
+  exports.MOBILEDOC_VERSION_0_3_1 = MOBILEDOC_VERSION_0_3_1;
+  var MOBILEDOC_VERSION = MOBILEDOC_VERSION_0_3_0;
 
   exports.MOBILEDOC_VERSION = MOBILEDOC_VERSION;
   /**
@@ -482,7 +487,7 @@ define('mobiledoc-html-renderer/renderers/0-3', ['exports', 'mobiledoc-html-rend
   }
 
   function validateVersion(version) {
-    if (version !== MOBILEDOC_VERSION) {
+    if (version !== MOBILEDOC_VERSION_0_3_0 && version !== MOBILEDOC_VERSION_0_3_1) {
       throw new Error('Unexpected Mobiledoc version "' + version + '"');
     }
   }
@@ -1038,11 +1043,11 @@ define('mobiledoc-html-renderer/utils/tag-names', ['exports', 'mobiledoc-html-re
   exports.isValidSectionTagName = isValidSectionTagName;
   exports.isValidMarkerType = isValidMarkerType;
 
-  var MARKUP_SECTION_TAG_NAMES = ['p', 'h1', 'h2', 'h3', 'blockquote', 'pull-quote'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
+  var MARKUP_SECTION_TAG_NAMES = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pull-quote', 'aside'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
 
   var LIST_SECTION_TAG_NAMES = ['ul', 'ol'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
 
-  var MARKUP_TYPES = ['b', 'i', 'strong', 'em', 'a', 'u', 'sub', 'sup', 's'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
+  var MARKUP_TYPES = ['b', 'i', 'strong', 'em', 'a', 'u', 'sub', 'sup', 's', 'code'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
 
   function contains(array, item) {
     return array.indexOf(item) !== -1;
@@ -12897,10 +12902,11 @@ define('mobiledoc-text-renderer/renderer-factory', ['exports', 'mobiledoc-text-r
 
         switch (version) {
           case _mobiledocTextRendererRenderers02.MOBILEDOC_VERSION:
+            return new _mobiledocTextRendererRenderers02['default'](mobiledoc, this.state).render();
           case undefined:
           case null:
-            return new _mobiledocTextRendererRenderers02['default'](mobiledoc, this.state).render();
-          case _mobiledocTextRendererRenderers03.MOBILEDOC_VERSION:
+          case _mobiledocTextRendererRenderers03.MOBILEDOC_VERSION_0_3:
+          case _mobiledocTextRendererRenderers03.MOBILEDOC_VERSION_0_3_1:
             return new _mobiledocTextRendererRenderers03['default'](mobiledoc, this.state).render();
           default:
             throw new Error('Unexpected Mobiledoc version "' + version + '"');
@@ -13164,11 +13170,15 @@ define('mobiledoc-text-renderer/renderers/0-3', ['exports', 'mobiledoc-text-rend
 
   var LINE_BREAK = '\n';
 
-  var MOBILEDOC_VERSION = '0.3.0';
+  var MOBILEDOC_VERSION_0_3 = '0.3.0';
+  exports.MOBILEDOC_VERSION_0_3 = MOBILEDOC_VERSION_0_3;
+  var MOBILEDOC_VERSION_0_3_1 = '0.3.1';
+  exports.MOBILEDOC_VERSION_0_3_1 = MOBILEDOC_VERSION_0_3_1;
+  var MOBILEDOC_VERSION = MOBILEDOC_VERSION_0_3_1;
 
   exports.MOBILEDOC_VERSION = MOBILEDOC_VERSION;
   function validateVersion(version) {
-    if (version !== MOBILEDOC_VERSION) {
+    if (version !== MOBILEDOC_VERSION_0_3 && version !== MOBILEDOC_VERSION_0_3_1) {
       throw new Error('Unexpected Mobiledoc version "' + version + '"');
     }
   }
