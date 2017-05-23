@@ -5,14 +5,54 @@ import { MARKUP_SECTION_TYPE } from './types';
 
 // valid values of `tagName` for a MarkupSection
 export const VALID_MARKUP_SECTION_TAGNAMES = [
-  'p', 'h3', 'h2', 'h1', 'blockquote', 'pull-quote'
+            'p', 'h3', 'h2', 'h1',
+            'header1-left', 'header1-center', 'header1-right',
+            'header2-left', 'header2-center', 'header2-right',
+            'header3-left', 'header3-center', 'header3-right',
+            'header4-left', 'header4-center', 'header4-right',
+            'header5-center',
+            'header6-left', 'header6-center', 'header6-right',
+            'subheader1-left', 'subheader1-center', 'subheader1-right',
+            'subheader2-left', 'subheader2-center', 'subheader2-right',
+            'subheader3-left', 'subheader3-center', 'subheader3-right',
+            'subheader4-center',
+            'body1-left', 'body1-right', 'body1-center',
+            'body2-left', 'body2-right', 'body2-center',
+            'body3-left', 'body3-right', 'body3-center',
+            'body4-left', 'body4-right', 'body4-center',
+            'header1', 'header2', 'header3', 'header4', 'header5', 'header6',
+            'subheader1', 'subheader2', 'subheader3', 'subheader4',
+            'body1', 'body2', 'body3', 'body4',
+            'blockquote1-left', 'blockquote1-right', 'blockquote1-center',
+            'blockquote2-left', 'blockquote2-right', 'blockquote2-center',
+            'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'
 ].map(normalizeTagName);
 
 // valid element names for a MarkupSection. A MarkupSection with a tagName
 // not in this will be rendered as a div with a className matching the
 // tagName
 export const MARKUP_SECTION_ELEMENT_NAMES = [
-  'p', 'h3', 'h2', 'h1', 'blockquote'
+            'p', 'h3', 'h2', 'h1',
+            'header1-left', 'header1-center', 'header1-right',
+            'header2-left', 'header2-center', 'header2-right',
+            'header3-left', 'header3-center', 'header3-right',
+            'header4-left', 'header4-center', 'header4-right',
+            'header5-center',
+            'header6-left', 'header6-center', 'header6-right',
+            'subheader1-left', 'subheader1-center', 'subheader1-right',
+            'subheader2-left', 'subheader2-center', 'subheader2-right',
+            'subheader3-left', 'subheader3-center', 'subheader3-right',
+            'subheader4-center',
+            'body1-left', 'body1-right', 'body1-center',
+            'body2-left', 'body2-right', 'body2-center',
+            'body3-left', 'body3-right', 'body3-center',
+            'body4-left', 'body4-right', 'body4-center',
+            'header1', 'header2', 'header3', 'header4', 'header5', 'header6',
+            'subheader1', 'subheader2', 'subheader3', 'subheader4',
+            'body1', 'body2', 'body3', 'body4',
+            'blockquote1-left', 'blockquote1-right', 'blockquote1-center',
+            'blockquote2-left', 'blockquote2-right', 'blockquote2-center',
+            'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'
 ].map(normalizeTagName);
 export const DEFAULT_TAG_NAME = VALID_MARKUP_SECTION_TAGNAMES[0];
 
