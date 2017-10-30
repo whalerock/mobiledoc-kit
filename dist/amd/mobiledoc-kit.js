@@ -103,7 +103,8 @@ define('mobiledoc-html-renderer/renderer-factory', ['exports', 'mobiledoc-html-r
           case undefined:
           case null:
             return new _mobiledocHtmlRendererRenderers02['default'](mobiledoc, this.state).render();
-          case _mobiledocHtmlRendererRenderers03.MOBILEDOC_VERSION:
+          case _mobiledocHtmlRendererRenderers03.MOBILEDOC_VERSION_0_3_0:
+          case _mobiledocHtmlRendererRenderers03.MOBILEDOC_VERSION_0_3_1:
             return new _mobiledocHtmlRendererRenderers03['default'](mobiledoc, this.state).render();
           default:
             throw new Error('Unexpected Mobiledoc version "' + version + '"');
@@ -451,7 +452,11 @@ define('mobiledoc-html-renderer/renderers/0-3', ['exports', 'mobiledoc-html-rend
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-  var MOBILEDOC_VERSION = '0.3.0';
+  var MOBILEDOC_VERSION_0_3_0 = '0.3.0';
+  exports.MOBILEDOC_VERSION_0_3_0 = MOBILEDOC_VERSION_0_3_0;
+  var MOBILEDOC_VERSION_0_3_1 = '0.3.1';
+  exports.MOBILEDOC_VERSION_0_3_1 = MOBILEDOC_VERSION_0_3_1;
+  var MOBILEDOC_VERSION = MOBILEDOC_VERSION_0_3_0;
 
   exports.MOBILEDOC_VERSION = MOBILEDOC_VERSION;
   /**
@@ -482,7 +487,7 @@ define('mobiledoc-html-renderer/renderers/0-3', ['exports', 'mobiledoc-html-rend
   }
 
   function validateVersion(version) {
-    if (version !== MOBILEDOC_VERSION) {
+    if (version !== MOBILEDOC_VERSION_0_3_0 && version !== MOBILEDOC_VERSION_0_3_1) {
       throw new Error('Unexpected Mobiledoc version "' + version + '"');
     }
   }
@@ -1038,11 +1043,11 @@ define('mobiledoc-html-renderer/utils/tag-names', ['exports', 'mobiledoc-html-re
   exports.isValidSectionTagName = isValidSectionTagName;
   exports.isValidMarkerType = isValidMarkerType;
 
-  var MARKUP_SECTION_TAG_NAMES = ['p', 'h1', 'h2', 'h3', 'blockquote', 'pull-quote'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
+  var MARKUP_SECTION_TAG_NAMES = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pull-quote', 'aside'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
 
   var LIST_SECTION_TAG_NAMES = ['ul', 'ol'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
 
-  var MARKUP_TYPES = ['b', 'i', 'strong', 'em', 'a', 'u', 'sub', 'sup', 's'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
+  var MARKUP_TYPES = ['b', 'i', 'strong', 'em', 'a', 'u', 'sub', 'sup', 's', 'code'].map(_mobiledocHtmlRendererUtilsDom.normalizeTagName);
 
   function contains(array, item) {
     return array.indexOf(item) !== -1;
@@ -6854,13 +6859,13 @@ define('mobiledoc-kit/models/markup-section', ['exports', 'mobiledoc-kit/models/
   function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
   // valid values of `tagName` for a MarkupSection
-  var VALID_MARKUP_SECTION_TAGNAMES = ['p', 'h4', 'h3', 'h2', 'h1', 'header1-left', 'header1-center', 'header1-right', 'header2-left', 'header2-center', 'header2-right', 'header3-left', 'header3-center', 'header3-right', 'header4-left', 'header4-center', 'header4-right', 'header5-center', 'header6-left', 'header6-center', 'header6-right', 'subheader1-left', 'subheader1-center', 'subheader1-right', 'subheader2-left', 'subheader2-center', 'subheader2-right', 'subheader3-left', 'subheader3-center', 'subheader3-right', 'subheader4-center', 'body1-left', 'body1-right', 'body1-center', 'body2-left', 'body2-right', 'body2-center', 'body3-left', 'body3-right', 'body3-center', 'body4-left', 'body4-right', 'body4-center', 'header1', 'header2', 'header3', 'header4', 'header5', 'header6', 'subheader1', 'subheader2', 'subheader3', 'subheader4', 'body1', 'body2', 'body3', 'body4', 'blockquote1-left', 'blockquote1-right', 'blockquote1-center', 'blockquote2-left', 'blockquote2-right', 'blockquote2-center', 'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
+  var VALID_MARKUP_SECTION_TAGNAMES = ['span', 'p', 'h4', 'h3', 'h2', 'h1', 'header1-left', 'header1-center', 'header1-right', 'header2-left', 'header2-center', 'header2-right', 'header3-left', 'header3-center', 'header3-right', 'header4-left', 'header4-center', 'header4-right', 'header5-center', 'header6-left', 'header6-center', 'header6-right', 'subheader1-left', 'subheader1-center', 'subheader1-right', 'subheader2-left', 'subheader2-center', 'subheader2-right', 'subheader3-left', 'subheader3-center', 'subheader3-right', 'subheader4-center', 'body1-left', 'body1-right', 'body1-center', 'body2-left', 'body2-right', 'body2-center', 'body3-left', 'body3-right', 'body3-center', 'body4-left', 'body4-right', 'body4-center', 'header1', 'header2', 'header3', 'header4', 'header5', 'header6', 'subheader1', 'subheader2', 'subheader3', 'subheader4', 'body1', 'body2', 'body3', 'body4', 'blockquote1-left', 'blockquote1-right', 'blockquote1-center', 'blockquote2-left', 'blockquote2-right', 'blockquote2-center', 'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
 
   exports.VALID_MARKUP_SECTION_TAGNAMES = VALID_MARKUP_SECTION_TAGNAMES;
   // valid element names for a MarkupSection. A MarkupSection with a tagName
   // not in this will be rendered as a div with a className matching the
   // tagName
-  var MARKUP_SECTION_ELEMENT_NAMES = ['p', 'h4', 'h3', 'h2', 'h1', 'header1-left', 'header1-center', 'header1-right', 'header2-left', 'header2-center', 'header2-right', 'header3-left', 'header3-center', 'header3-right', 'header4-left', 'header4-center', 'header4-right', 'header5-center', 'header6-left', 'header6-center', 'header6-right', 'subheader1-left', 'subheader1-center', 'subheader1-right', 'subheader2-left', 'subheader2-center', 'subheader2-right', 'subheader3-left', 'subheader3-center', 'subheader3-right', 'subheader4-center', 'body1-left', 'body1-right', 'body1-center', 'body2-left', 'body2-right', 'body2-center', 'body3-left', 'body3-right', 'body3-center', 'body4-left', 'body4-right', 'body4-center', 'header1', 'header2', 'header3', 'header4', 'header5', 'header6', 'subheader1', 'subheader2', 'subheader3', 'subheader4', 'body1', 'body2', 'body3', 'body4', 'blockquote1-left', 'blockquote1-right', 'blockquote1-center', 'blockquote2-left', 'blockquote2-right', 'blockquote2-center', 'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
+  var MARKUP_SECTION_ELEMENT_NAMES = ['span', 'p', 'h4', 'h3', 'h2', 'h1', 'header1-left', 'header1-center', 'header1-right', 'header2-left', 'header2-center', 'header2-right', 'header3-left', 'header3-center', 'header3-right', 'header4-left', 'header4-center', 'header4-right', 'header5-center', 'header6-left', 'header6-center', 'header6-right', 'subheader1-left', 'subheader1-center', 'subheader1-right', 'subheader2-left', 'subheader2-center', 'subheader2-right', 'subheader3-left', 'subheader3-center', 'subheader3-right', 'subheader4-center', 'body1-left', 'body1-right', 'body1-center', 'body2-left', 'body2-right', 'body2-center', 'body3-left', 'body3-right', 'body3-center', 'body4-left', 'body4-right', 'body4-center', 'header1', 'header2', 'header3', 'header4', 'header5', 'header6', 'subheader1', 'subheader2', 'subheader3', 'subheader4', 'body1', 'body2', 'body3', 'body4', 'blockquote1-left', 'blockquote1-right', 'blockquote1-center', 'blockquote2-left', 'blockquote2-right', 'blockquote2-center', 'blockquote1', 'blockquote2', 'blockquote', 'pull-quote'].map(_mobiledocKitUtilsDomUtils.normalizeTagName);
   exports.MARKUP_SECTION_ELEMENT_NAMES = MARKUP_SECTION_ELEMENT_NAMES;
   var DEFAULT_TAG_NAME = VALID_MARKUP_SECTION_TAGNAMES[0];
 
@@ -12897,10 +12902,11 @@ define('mobiledoc-text-renderer/renderer-factory', ['exports', 'mobiledoc-text-r
 
         switch (version) {
           case _mobiledocTextRendererRenderers02.MOBILEDOC_VERSION:
+            return new _mobiledocTextRendererRenderers02['default'](mobiledoc, this.state).render();
           case undefined:
           case null:
-            return new _mobiledocTextRendererRenderers02['default'](mobiledoc, this.state).render();
-          case _mobiledocTextRendererRenderers03.MOBILEDOC_VERSION:
+          case _mobiledocTextRendererRenderers03.MOBILEDOC_VERSION_0_3:
+          case _mobiledocTextRendererRenderers03.MOBILEDOC_VERSION_0_3_1:
             return new _mobiledocTextRendererRenderers03['default'](mobiledoc, this.state).render();
           default:
             throw new Error('Unexpected Mobiledoc version "' + version + '"');
@@ -13164,11 +13170,15 @@ define('mobiledoc-text-renderer/renderers/0-3', ['exports', 'mobiledoc-text-rend
 
   var LINE_BREAK = '\n';
 
-  var MOBILEDOC_VERSION = '0.3.0';
+  var MOBILEDOC_VERSION_0_3 = '0.3.0';
+  exports.MOBILEDOC_VERSION_0_3 = MOBILEDOC_VERSION_0_3;
+  var MOBILEDOC_VERSION_0_3_1 = '0.3.1';
+  exports.MOBILEDOC_VERSION_0_3_1 = MOBILEDOC_VERSION_0_3_1;
+  var MOBILEDOC_VERSION = MOBILEDOC_VERSION_0_3_1;
 
   exports.MOBILEDOC_VERSION = MOBILEDOC_VERSION;
   function validateVersion(version) {
-    if (version !== MOBILEDOC_VERSION) {
+    if (version !== MOBILEDOC_VERSION_0_3 && version !== MOBILEDOC_VERSION_0_3_1) {
       throw new Error('Unexpected Mobiledoc version "' + version + '"');
     }
   }

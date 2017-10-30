@@ -5,7 +5,7 @@ import { MARKUP_SECTION_TYPE } from './types';
 
 // valid values of `tagName` for a MarkupSection
 export const VALID_MARKUP_SECTION_TAGNAMES = [
-            'p', 'h4', 'h3', 'h2', 'h1',
+            'span', 'p', 'h4', 'h3', 'h2', 'h1',
             'header1-left', 'header1-center', 'header1-right',
             'header2-left', 'header2-center', 'header2-right',
             'header3-left', 'header3-center', 'header3-right',
@@ -32,7 +32,7 @@ export const VALID_MARKUP_SECTION_TAGNAMES = [
 // not in this will be rendered as a div with a className matching the
 // tagName
 export const MARKUP_SECTION_ELEMENT_NAMES = [
-            'p', 'h4', 'h3', 'h2', 'h1',
+            'span', 'p', 'h4', 'h3', 'h2', 'h1',
             'header1-left', 'header1-center', 'header1-right',
             'header2-left', 'header2-center', 'header2-right',
             'header3-left', 'header3-center', 'header3-right',
